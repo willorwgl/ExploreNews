@@ -18,8 +18,7 @@ public class NewsApiClient {
     private final String everythingUrl;
     private final String key;
     private final RestTemplate restTemplate;
-    private final int FIXED_PAGE_SIZE = 20;
-    private final int INITIAL_PAGE = 1;
+    private final int FIXED_PAGE_SIZE = 100;
 
     public NewsApiClient(final RestTemplateBuilder restTemplateBuilder, final NewsApiProperties properties) {
          this.restTemplate = restTemplateBuilder
@@ -38,7 +37,6 @@ public class NewsApiClient {
                 .queryParam("to", searchForm.getTo())
                 .queryParam("sortBy", searchForm.getSortBy())
                 .queryParam("pageSize", this.FIXED_PAGE_SIZE)
-                .queryParam("page", this.INITIAL_PAGE)
                 .queryParam("apikey", this.key)
                 .build()
                 .encode()
@@ -55,7 +53,6 @@ public class NewsApiClient {
        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUriString(this.headlinesUrl)
                .queryParam("q", searchForm.getKeyword())
                .queryParam("pageSize", this.FIXED_PAGE_SIZE)
-               .queryParam("page", this.INITIAL_PAGE)
                .queryParam("apikey", this.key);
        if (searchForm.getCategory() != null || searchForm.getCountry() != null) {
            uriComponentsBuilder.queryParam("country", searchForm.getCountry()).queryParam("category", searchForm.getCategory());

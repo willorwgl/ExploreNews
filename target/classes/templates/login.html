@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+    <title id="pageTitle">Login</title>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <style>
+
+
+        .login-container{
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+        .login-form-1{
+            padding: 5%;
+            box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+        }
+        .login-form-1 h3{
+            text-align: center;
+            color: #333;
+        }
+        .login-container form{
+            padding: 1.5%;
+        }
+        .btnSubmit
+        {
+            width: 50%;
+            border-radius: 1rem;
+            padding: 1.5%;
+            border: none;
+            cursor: pointer;
+        }
+        .login-form-1 .btnSubmit{
+            font-weight: 600;
+            color: #fff;
+            background-color: #0062cc;
+        }
+
+        .btn-primary
+                              {
+                                            width: 50%;
+                                            border-radius: 1rem;
+                                            padding: 1.5%;
+                                            border: none;
+                                            cursor: pointer;
+                                        }
+
+                                        .btn-primary
+                                                        {
+                                                            font-weight: 600;
+                                                            color: #fff;
+                                                            background-color: #0062cc;
+                                                        }
+
+
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Login</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li class="active"><a href="/login">Login</a></li>
+      <li><a href="/signup">Signup</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+        <div class="container login-container">
+                    <div class="row">
+                        <div class="col-md-6 login-form-1">
+                            <h3>Login</h3>
+                            <form th:action="@{/authenticate}" method="POST" cssClass="form-horizontal">
+                                <div th:if="${param.error != null}" class="alert alert-danger">
+                                            <strong>Failed to login.</strong>
+
+                                            <span th:if="${session[SPRING_SECURITY_LAST_EXCEPTION] != null}">
+                                                <span th:text="${session[SPRING_SECURITY_LAST_EXCEPTION].message}">Invalid credentials</span>
+                                            </span>
+                                        </div>
+                                        <div th:if="${param.logout != null}" class="alert alert-success">
+                                            You have been logged out.
+                                        </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Username *" name="username"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Your Password *" name="password" />
+                                </div>
+                                 <div class="checkbox">
+                                                               <label><input type="checkbox" th:checked="true">Remember Me?</label>
+                                                                                                                    </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btnSubmit" value="Login" />
+                                </div>
+
+
+                            </form>
+
+                             <form th:action="@{/signin/facebook}" method="POST">
+                                                                                                                                                          <div class="form-group">
+                                                                                                                                                        <input type="hidden" name="scope" value="public_profile" />
+                                                                                                                                                       <button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-user"></span> Login using facebook</button>
+                                                                                                                                                             </div>
+                                                                                                                                                       </form>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+</body>
+</html>

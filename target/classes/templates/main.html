@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>Main</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">ExploreNews</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="/news/headlinesearch">Headlines</a></li>
+      <li><a href="/news/everythingsearch">Everything</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container">
+<h1>Welcome <span th:text="${username}">username</span></h1>
+
+<br>
+<br>
+
+<h2>To get started, select one of the following search options:</h2>
+<h3><a href="/news/headlinesearch"><i>Top Headlines:</i></a> provides live top and breaking headlines for a country,
+specific category in a country, single source, or multiple sources.
+You can also search with keywords. Articles are sorted by the earliest date published first.
+</h3>
+<h3>
+<a href="/news/everythingsearch"><i>Everything:</i></a>
+Search through millions of articles from over 30,000 large and small news sources and blogs.
+</h3>
+</div>
+
+</body>
+</html>

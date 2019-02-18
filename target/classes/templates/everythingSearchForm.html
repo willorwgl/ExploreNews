@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en"xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search news</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+
+        .top-buffer { margin-top:50px; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Everything</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/news">Home</a></li>
+      <li><a href="/news/headlinesearch">Headlines</a></li>
+      <li class="active"><a href="/news/everythingsearch">Everything</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container top-buffer">
+<form action="#" th:action="@{/news/everythingsearch/result}" th:object="${searchForm}" method="post">
+    <div class="form-group">
+        <label for="inputKeyword" class = "col-sm-1">Keyword(*):</label>
+
+        <div class="col-sm-5">
+    <input type="text" th:field="*{keyword}" class = "form-control" id="inputKeyword"><br>
+        <th:block th:if="${error} != null" th:text="${error}">error message</th:block>
+        </div>
+        <div class="col-sm-1">   <button type="submit" class="btn btn-primary">Search</button></div>
+    </div>
+    <div class="form-group input-lg">
+        <div class="form-check">
+    Time: <select th:field="*{timeRange}">
+    <option th:value="1" >Past one day</option>`
+    <option th:value="3">Past three days</option>
+    <option th:value="7">Past week</option>
+    <option th:value="14">Past two weeks</option>
+    <option th:value="30">Past month</option>
+            </select>
+
+            Sort By: <select th:field="*{sortBy}">
+            <option th:value="relevancy" >relevancy</option>`
+            <option th:value="popularity">popularity</option>
+            <option th:value="publishedAt">newest</option>
+
+        </select>
+        </div>
+    </div>
+    <div class="col-sm-12">
+         <h4>Sources:</h4>
+         </div>
+    <div class="form-group">
+        <div class="form-check">
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="abc-news">ABC News
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="abc-news-au">ABC News (AU)
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="aftenposten">Aftenposten
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="al-jazeera-english">Al Jazeera English
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="ansa">ANSA.it
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="argaam">Argaam
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="ars-technica">Ars Technica
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="ary-news">Ary News
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="associated-press">Associated Press
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="australian-financial">Australian Financial
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="axios">Axios
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="bbc-news">BBC News
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="bbc-sport">BBC Sport
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="bild">Bild
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="blasting-news-br">Blasting News (BR)
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="bleacher-report">Bleacher Report
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="bloomberg">Bloomberg
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="breitbart-news">Breitbart News
+            </div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="business-insider">Business Insider</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="business-insider-uk">Business Insider (UK)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="buzzfeed">Buzzfeed</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="cbc-news">CBC News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="cbs-news">CBS News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="cnbc">CNBC</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="cnn">CNN</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="cnn-es">CNN Spanish</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="crypto-coins-news">Crypto Coins News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="daily-mail">Daily Mail</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="der-tagesspiegel">Der Tagesspiegel</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="die-zeit">Die Zeit</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="el-mundo">El Mundo</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="engadget">Engadget</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="entertainment-weekly">Entertainment Weekly</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="espn">ESPN</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="espn-cric-info">ESPN Cric Info</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="financial-post">Financial Post</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="financial-times">Financial Times</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="focus">Focus</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="football-italia">Football Italia</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="fortune">Fortune</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="four-four-two">FourFourTwo</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="fox-news">Fox News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="fox-sports">Fox Sports</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="globo">Globo</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news">Google News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-ar">Google News (Argentina)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-au">Google News (Australia)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-br">Google News (Brazil)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-ca">Google News (Canada)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-fr">Google News (France)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-in">Google News (India)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-is">Google News (Israel)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-it">Google News (Italy)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-ru">Google News (Russia)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-sa">Google News (Saudi Arabia)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="google-news-uk">Google News (UK)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="goteborgs-posten">Göteborgs-Posten</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="gruenderszene">Gruenderszene</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="hacker-news">Hacker News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="handelsblatt">Handelsblatt</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="ign">IGN</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="il-sole-25-ore">Il Sole 24 Ore</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="independent">Independent</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="infobae">Infobae</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="info-money">InfoMoney</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="la-gaceta">La Gaceta</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="la-nacion">La Nacion</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="la-repubblica">La Repubblica</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="le-monde">Le Monde</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="lenta">Lenta</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="lequipe">L'equipe</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="les-echos">Les Echos</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="liberation">Liberation</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="marca">Marca</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="mashable">Mashable</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="medical-news-today">Medical News Today</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="metro">Metro</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="mirror">Mirror</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="msnbc">MSNBC</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="mtv-news">MTV News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="mtv-news-uk">MTV News (UK)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="national-geographic">National Geographic</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="national-review">National Review</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="nbc-news">NBC News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="news24">News24</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="new-scientist">New Scientist</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="news-com-au">News.com.au</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="newsweek">Newsweek</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="new-york-magazine">New York Magazine</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="next-big-future">Next Big Future</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="nfl-news">NFL News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="nhl-news">NHL News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="nrk">NRK</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="politico">Politico</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="polygon">Polygon</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="rbc">RBC</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="recode">Recode</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="reddit-r-all">Reddit /r/all</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="reuters">Reuters</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="rt">RT</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="rte">RTE</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="rtl-nieuws">RTL Nieuws</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="sabq">SABQ</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="spiegel-online">Spiegel Online</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="svenska-dagbladet">Svenska Dagbladet</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="t3n">T3n</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="talksport">TalkSport</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="techcrunch">TechCrunch</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="techcrunch-cn">TechCrunch (CN)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="techradar">TechRadar</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-american-conservative">The American Conservative</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-economist">The Economist</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-globe-and-mail">The Global And Mail</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-guardian-au">The Guardian (AU)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-guardian-uk">The Guardian (UK)</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-hill">The Hill</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-hindu">The Hindu</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-huffington">The Huffington</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-irish-iimes">The Irish Times</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-jerusalem">The Jerusalem</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-lad-bible">The Lad Bible</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-new-york-times">The New York Times</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-next-web">The Next Web</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-sport-bible">The Sport Bible</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-telegraph">The Telegraph</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-times-of-india">The Times of India</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-verge">The Verge</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-wall-street-journal">The Wall Street Journal</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-washington-post">The Washington Post</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="the-washington-times">The Washington Times</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="time">Time</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="usa-today">USA Today</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="vice-news">Vice News</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="wired">Wired</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="wired-de">Wired.de</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="wirtschafts-woche">Wirtschafts Woche</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="xinhua-net">Xinhua Net</div>
+            <div class="col-sm-3">
+                <input type="checkbox" th:field="*{sources}" th:value="ynet">Ynet</div>
+        </div>
+
+
+
+
+</form>
+</div>
+</body>
+
+</html>
