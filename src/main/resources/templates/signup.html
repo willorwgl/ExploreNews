@@ -1,0 +1,144 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .top-buffer { margin-top:50px; }
+
+        .top-buffer { margin-top:50px; }
+
+                .signup-container{
+                    margin-top: 5%;
+                    margin-bottom: 5%;
+                }
+                .signup-form{
+                    padding: 5%;
+                    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+                }
+                .signup-form h3{
+                    text-align: center;
+                    color: #333;
+                }
+                .signup-container form{
+                    padding: 1.5%;
+                }
+                .btnSubmit
+                {
+                    width: 50%;
+                    border-radius: 1rem;
+                    padding: 1.5%;
+                    border: none;
+                    cursor: pointer;
+                }
+                .signup-form .btnSubmit
+                {
+                    font-weight: 600;
+                    color: #fff;
+                    background-color: #0062cc;
+                }
+
+                  .btn-primary
+                      {
+                                    width: 50%;
+                                    border-radius: 1rem;
+                                    padding: 1.5%;
+                                    border: none;
+                                    cursor: pointer;
+                                }
+
+                                .btn-primary
+                                                {
+                                                    font-weight: 600;
+                                                    color: #fff;
+                                                    background-color: #0062cc;
+                                                }
+
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Signup</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Login</a></li>
+      <li class="active"><a href="/signup">Signup</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+         <div class="container signup-container">
+                     <div class="row">
+                         <div class="col-md-6 signup-form">
+                             <h3>New Account</h3>
+                             <form th:action="@{/signup/new}" method="POST" cssClass="form-horizontal" th:object="${userSignup}">
+                                 <div th:if="${usernameError != null}" class="alert alert-danger">
+                                             <strong th:text="${usernameError}">Username Error</strong>
+                                 </div>
+
+                                 <div th:if="${passwordError != null}" class="alert alert-danger">
+                                             <strong th:text="${passwordError}">Username Error</strong>
+                                 </div>
+                                 <div th:if="${confirmPassword != null}" class="alert alert-danger">
+                                              <strong th:text="${confirmPasswordError}">Username Error</strong>
+                                 </div>
+
+                                 <div class="form-group">
+                                     <input type="text" class="form-control" placeholder="Username" th:field="*{username}"/>
+                                 </div>
+                                 <div class="form-group">
+                                     <input type="password" class="form-control" placeholder="Password *" th:field="*{password}" />
+                                 </div>
+                                 <div class="form-group">
+                                     <input type="password" class="form-control" placeholder="Confirm Password *" th:field="*{confirmPassword}" />
+                                   </div>
+                                 <div class="form-group">
+                                     <input type="submit" class="btnSubmit" value="Create Account" />
+                                 </div>
+
+
+
+
+
+
+
+                             </form>
+
+                              <form th:action="@{/signin/facebook}" method="POST">
+                                                                                                                              <div class="form-group">
+                                                                                                                            <input type="hidden" name="scope" value="public_profile" />
+                                                                                                                           <button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-user"></span> Login using facebook</button>
+                                                                                                                                 </div>
+                                                                                                                           </form>
+
+
+
+                         </div>
+                     </div>
+                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

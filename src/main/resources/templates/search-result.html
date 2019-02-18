@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Result</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+
+    .img-thumbnail{
+        width: 500px;
+        height: 300px;
+    }
+    table.result td {
+        margin: 12px 12px 12px 12px;
+        padding: 12px 12px 12px 12px;
+    }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Search Result</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/news">Home</a></li>
+      <li><a href="/news/headlinesearch">Headlines</a></li>
+      <li><a href="/news/everythingsearch">Everything</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+<h1>Search result:</h1>
+<div th:if="${articles == null}" >
+   <h2>No result found</h2>
+</div>
+
+<table class="result">
+     <colgroup>
+                <col class="col-md-5">
+                <col class="col-md-6">
+            </colgroup>
+
+
+<tbody  th:each = "article : ${articles}">
+    <tr>
+    <td> <img th:src="${article.urlToImage}" class="img-thumbnail"></td>
+    <td>
+            <h3 th:text = "${article.title}">title</h3>
+            <h4 th:text = "${article.author}">author</h4>
+            <p><b>Description:</b> <span th:text = "${article.description}">description</span></p>
+            <p><b>Content: </b><span th:text = "${article.content}">content</span></p>
+             <a th:href="${article.url}">View full article</a>
+            </td>
+    </tr>
+
+    </tbody>
+
+
+</table>
+
+</div>
+
+</body>
+</html>
