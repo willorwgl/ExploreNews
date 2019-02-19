@@ -60,7 +60,6 @@ public class NewsApiClient {
            uriComponentsBuilder.queryParam("sources", searchForm.getSources());
        }
        String url = uriComponentsBuilder.build().encode().toUriString();
-        System.out.println(url);
         SearchResult searchResult = restTemplate.getForObject(url, SearchResult.class);
         if (!searchResult.getStatus().equals("ok")) {
             throw new NewsApiException();

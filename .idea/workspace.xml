@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6ef17b24-b424-43dd-86bb-3753ace094ff" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/william/news/restclient/NewsApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/william/news/restclient/NewsApiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/search-result.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/search-result.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -94,8 +93,8 @@
       <file leaf-file-name="NewsApiClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/william/news/restclient/NewsApiClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+            <state relative-caret-position="1173">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
             </state>
           </provider>
         </entry>
@@ -455,12 +454,12 @@
       <workItem from="1550092424592" duration="24049000" />
       <workItem from="1550469114530" duration="543000" />
       <workItem from="1550469696311" duration="18159000" />
-      <workItem from="1550531547176" duration="1312000" />
+      <workItem from="1550531547176" duration="1596000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89259000" />
+    <option name="totallyTimeSpent" value="89543000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="19" y="37" width="1421" height="783" extended-state="0" />
@@ -485,7 +484,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Version Control" order="13" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32970452" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32970452" />
       <window_info anchor="bottom" id="Spring" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26395938" />
@@ -546,7 +545,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -902,8 +901,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/william/news/restclient/NewsApiClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        <state relative-caret-position="1173">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
         </state>
       </provider>
     </entry>
