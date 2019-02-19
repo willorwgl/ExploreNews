@@ -4,6 +4,7 @@
 <head>
     <title id="pageTitle">Login</title>
        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
        <style>
 
 
@@ -104,12 +105,26 @@
 
                             </form>
 
-                             <form th:action="@{/signin/facebook}" method="POST">
-                                                                                                                                                          <div class="form-group">
-                                                                                                                                                        <input type="hidden" name="scope" value="public_profile" />
-                                                                                                                                                       <button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-user"></span> Login using facebook</button>
-                                                                                                                                                             </div>
-                                                                                                                                                       </form>
+                             </form>
+
+                                                           <form th:action="@{/signin/facebook}" method="POST" >
+                                                                    <div class="form-group">
+                                                                        <input type="hidden" name="scope" value="public_profile" />
+                                                                        <button type="submit" class="btn btn-primary"> <span class="fa fa-facebook"></span> Login using Facebook</button>
+                                                                    </div>
+                                                           </form>
+                                                           <form th:action="@{/signin/twitter}" method="POST">
+                                                                 <div class="form-group">
+                                                                        <input type="hidden" name="scope" value="public_profile" />
+                                                                         <button type="submit" class="btn btn-primary" > <span class="fa fa-twitter"></span> Login using Twitter</button>
+                                                                         </div>
+                                                            </form>
+                                                             <form th:action="@{/signin/google}" method="POST">
+                                                                                                <div class="form-group">
+                                                                                                       <input type="hidden" name="scope" value="profile" />
+                                                                                                        <button type="submit" class="btn btn-primary"> <span class="fa fa-google"></span> Login using Google</button>
+                                                                                                        </div>
+                                                                                           </form>
                         </div>
 
 

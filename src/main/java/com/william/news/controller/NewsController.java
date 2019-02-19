@@ -4,10 +4,12 @@ import com.william.news.domain.EverythingSearchForm;
 import com.william.news.domain.HeadlineSearchForm;
 import com.william.news.restclient.NewsApiClient;
 import com.william.news.restclient.NewsApiException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -20,8 +22,7 @@ public class NewsController {
         this.newsApiClient = newsApiClient;
     }
     @GetMapping
-    public String main(Model model) {
-        model.addAttribute("username",   SecurityContextHolder.getContext().getAuthentication().getName());
+    public String main() {
         return "main";
     }
 

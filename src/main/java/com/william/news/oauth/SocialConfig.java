@@ -13,6 +13,8 @@ import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.connect.web.ProviderSignInController;
 import org.springframework.social.connect.web.SignInAdapter;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.twitter.connect.TwitterConnectionFactory;
 
 import javax.sql.DataSource;
 
@@ -50,8 +52,13 @@ public class SocialConfig {
         ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
         registry.addConnectionFactory(new FacebookConnectionFactory(
                 environment.getProperty("spring.social.facebook.appId"),
-                environment.getProperty("spring.social.facebook.appSecret")
-        ));
+                environment.getProperty("spring.social.facebook.appSecret")));
+        registry.addConnectionFactory(new TwitterConnectionFactory(
+                environment.getProperty("spring.social.twitter.appId"),
+                environment.getProperty("spring.social.twitter.appSecret")));
+        registry.addConnectionFactory(new GoogleConnectionFactory(
+                environment.getProperty("spring.social.google.appId"),
+                environment.getProperty("spring.social.google.appSecret")));
         return registry;
     }
 
