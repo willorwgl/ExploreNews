@@ -1,5 +1,6 @@
 package com.william.news.rememberme;
 
+import com.google.common.base.Preconditions;
 import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Component;
@@ -13,8 +14,10 @@ public class JpaPersistentTokenRepository implements PersistentTokenRepository {
     private RememberMeRepository rememberMeRepository;
 
     public JpaPersistentTokenRepository(RememberMeRepository rememberMeRepository) {
+        Preconditions.checkNotNull(rememberMeRepository, "RememberMeRepository cannot be null");
         this.rememberMeRepository = rememberMeRepository;
     }
+
 
     @Override
     public void createNewToken(PersistentRememberMeToken token) {

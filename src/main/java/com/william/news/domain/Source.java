@@ -5,7 +5,6 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-
 public class Source {
 
     private String id;

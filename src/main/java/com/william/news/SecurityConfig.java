@@ -1,5 +1,6 @@
 package com.william.news;
 
+import com.google.common.base.Preconditions;
 import com.william.news.dataaccess.NewsUserDetailsServiceImpl;
 import com.william.news.rememberme.JpaPersistentTokenRepository;
 import org.springframework.context.annotation.Configuration;
@@ -16,14 +17,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     private final NewsUserDetailsServiceImpl newsUserDetailsService;
-    private final PasswordEncoder passwordEncoder;
     private final JpaPersistentTokenRepository jpaPersistentTokenRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public SecurityConfig(NewsUserDetailsServiceImpl newsUserDetailsService, PasswordEncoder passwordEncoder,
-                          JpaPersistentTokenRepository jpaPersistentTokenRepository) {
+    public SecurityConfig(NewsUserDetailsServiceImpl newsUserDetailsService,
+                          JpaPersistentTokenRepository jpaPersistentTokenRepository,
+                          PasswordEncoder passwordEncoder) {
+        Preconditions.checkNotNull(newsUserDetailsService, "NewsUserDetailService cannot be null");
+        Preconditions.checkNotNull(jpaPersistentTokenRepository, "JpaPersistentTokenRepository cannot be null");
+        Preconditions.checkNotNull(passwordEncoder, "PasswordEncoder cannot be null");
         this.newsUserDetailsService = newsUserDetailsService;
-        this.passwordEncoder = passwordEncoder;
         this.jpaPersistentTokenRepository = jpaPersistentTokenRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -66,9 +71,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     public RememberMeServices rememberMeServices() {
-        PersistentTokenBasedRememberMeServices rememberMeServices =
-                new PersistentTokenBasedRememberMeServices("newsapp", newsUserDetailsService, jpaPersistentTokenRepository);
-        return rememberMeServices;
+        return new PersistentTokenBasedRememberMeServices("newsapp", newsUserDetailsService, jpaPersistentTokenRepository);
+
     }
 
     @Override
@@ -77,4 +81,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoring()
                 .antMatchers("/resources/**");
     }
+
+
 }

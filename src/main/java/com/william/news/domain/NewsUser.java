@@ -1,9 +1,7 @@
 package com.william.news.domain;
 
-import com.william.news.restclient.NewsApiProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +13,6 @@ import java.util.Collection;
 @Data
 @Entity
 @AllArgsConstructor
-@EnableConfigurationProperties(NewsApiProperties.class)
 public class NewsUser implements UserDetails {
 
 

@@ -1,5 +1,6 @@
 package com.william.news.controller;
 
+import com.google.common.base.Preconditions;
 import com.william.news.domain.EverythingSearchForm;
 import com.william.news.domain.HeadlineSearchForm;
 import com.william.news.restclient.NewsApiClient;
@@ -19,6 +20,7 @@ public class NewsController {
     private NewsApiClient newsApiClient;
 
     public NewsController(NewsApiClient newsApiClient) {
+        Preconditions.checkNotNull(newsApiClient, "NewsApiClient cannot be null");
         this.newsApiClient = newsApiClient;
     }
     @GetMapping

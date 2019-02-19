@@ -1,5 +1,6 @@
 package com.william.news.dataaccess;
 
+import com.google.common.base.Preconditions;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,6 +12,7 @@ public class NewsUserDetailsServiceImpl implements UserDetailsService {
     private NewsUserService newsUserService;
 
     public NewsUserDetailsServiceImpl(NewsUserService newsUserService) {
+        Preconditions.checkNotNull(newsUserService, "NewsUserService cannot be null");
         this.newsUserService = newsUserService;
     }
 

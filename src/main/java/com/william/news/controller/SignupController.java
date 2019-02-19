@@ -1,6 +1,7 @@
 package com.william.news.controller;
 
 
+import com.google.common.base.Preconditions;
 import com.william.news.dataaccess.NewsUserService;
 import com.william.news.domain.NewsUser;
 import com.william.news.domain.SignupForm;
@@ -23,6 +24,7 @@ public class SignupController {
     private NewsUserService newsUserService;
 
     public SignupController(NewsUserService newsUserService) {
+        Preconditions.checkNotNull(newsUserService, "NewsUserService cannot be null");
         this.newsUserService = newsUserService;
     }
 

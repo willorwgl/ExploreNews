@@ -1,6 +1,7 @@
 package com.william.news.oauth;
 
 
+import com.google.common.base.Preconditions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -28,7 +29,9 @@ public class SocialConfig {
 
     public SocialConfig(ProviderConnectionSignup providerConnectionSignup, SignInAdapter signInAdapter,
                         Environment environment, DataSource dataSource) {
-
+        Preconditions.checkNotNull(providerConnectionSignup, "ProviderConnectionSignup cannot be null");
+        Preconditions.checkNotNull(signInAdapter, "SigninAdapter cannot be null");
+        Preconditions.checkNotNull(dataSource, "DataSource cannot be null");
         this.providerConnectionSignup = providerConnectionSignup;
         this.signInAdapter = signInAdapter;
         this.environment = environment;

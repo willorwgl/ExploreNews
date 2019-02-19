@@ -8,6 +8,8 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 public class SocialAuthenticationUtils {
 
+    private SocialAuthenticationUtils() {}
+
     public static NewsUser createNewsUser(Connection<?> connection) {
         UserProfile userProfile = connection.fetchUserProfile();
         NewsUser newsUser = new NewsUser();

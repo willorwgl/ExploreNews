@@ -1,5 +1,6 @@
 package com.william.news.restclient;
 
+import com.google.common.base.Preconditions;
 import com.william.news.domain.Article;
 import com.william.news.domain.EverythingSearchForm;
 import com.william.news.domain.HeadlineSearchForm;
@@ -21,6 +22,8 @@ public class NewsApiClient {
     private final int FIXED_PAGE_SIZE = 100;
 
     public NewsApiClient(final RestTemplateBuilder restTemplateBuilder, final NewsApiProperties properties) {
+        Preconditions.checkNotNull(restTemplateBuilder, "RestTemplateBuilder cannot be null");
+        Preconditions.checkNotNull(properties, "NewsApiProperties cannot be null");
          this.restTemplate = restTemplateBuilder
                 .setConnectTimeout(Duration.ofSeconds(properties.getConnectTimeout()))
                 .setReadTimeout(Duration.ofSeconds(properties.getReadTimeout())).build();

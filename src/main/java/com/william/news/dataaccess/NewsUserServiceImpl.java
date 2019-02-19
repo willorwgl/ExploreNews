@@ -1,7 +1,6 @@
 package com.william.news.dataaccess;
 
-import com.william.news.dataaccess.NewsUserRepository;
-import com.william.news.dataaccess.NewsUserService;
+import com.google.common.base.Preconditions;
 import com.william.news.domain.NewsUser;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +12,8 @@ public class NewsUserServiceImpl implements NewsUserService {
     private final PasswordEncoder passwordEncoder;
 
     public NewsUserServiceImpl(NewsUserRepository newsUserRepository, PasswordEncoder passwordEncoder) {
+        Preconditions.checkNotNull(newsUserRepository, "NewsUserRepository cannot be null");
+        Preconditions.checkNotNull(passwordEncoder, "PasswordEncoder cannot be null");
         this.newsUserRepository = newsUserRepository;
         this.passwordEncoder = passwordEncoder;
     }
