@@ -22,16 +22,17 @@ import javax.sql.DataSource;
 @Configuration
 public class SocialConfig {
 
-    private ProviderConnectionSignup providerConnectionSignup;
-    private SignInAdapter signInAdapter;
-    private Environment environment;
-    private DataSource dataSource;
+    private final ProviderConnectionSignup providerConnectionSignup;
+    private final SignInAdapter signInAdapter;
+    private final Environment environment;
+    private final DataSource dataSource;
 
     public SocialConfig(ProviderConnectionSignup providerConnectionSignup, SignInAdapter signInAdapter,
                         Environment environment, DataSource dataSource) {
         Preconditions.checkNotNull(providerConnectionSignup, "ProviderConnectionSignup cannot be null");
-        Preconditions.checkNotNull(signInAdapter, "SigninAdapter cannot be null");
+        Preconditions.checkNotNull(signInAdapter, "SignInAdapter cannot be null");
         Preconditions.checkNotNull(dataSource, "DataSource cannot be null");
+        Preconditions.checkNotNull(environment, "Environment cannot be null");
         this.providerConnectionSignup = providerConnectionSignup;
         this.signInAdapter = signInAdapter;
         this.environment = environment;

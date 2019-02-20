@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 @RequestMapping("/signup")
 public class SignupController {
 
-    private NewsUserService newsUserService;
+    private final NewsUserService newsUserService;
 
     public SignupController(NewsUserService newsUserService) {
         Preconditions.checkNotNull(newsUserService, "NewsUserService cannot be null");
@@ -49,12 +49,8 @@ public class SignupController {
             redirectAttributes.addFlashAttribute("usernameError", "Username is already in use.");
             return "redirect:/signup";
         }
-        if (userSignUp.getPassword() == null) {
-            redirectAttributes.addFlashAttribute("passwordError",
-                    "Password field must not be empty");
-            return "redirect:/signup";
-        }
-        if (!Pattern.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", userSignUp.getPassword())) {
+        if ( (userSignUp.getPassword() == null) ||
+                !Pattern.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", userSignUp.getPassword())) {
             redirectAttributes.addFlashAttribute("passwordError",
                     "Password between 8 and 20 characters; " +
                             "must contain at least one lowercase letter, one uppercase letter, one numeric digit, " +

@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class JpaPersistentTokenRepository implements PersistentTokenRepository {
 
-    private RememberMeRepository rememberMeRepository;
+    private final RememberMeRepository rememberMeRepository;
 
     public JpaPersistentTokenRepository(RememberMeRepository rememberMeRepository) {
         Preconditions.checkNotNull(rememberMeRepository, "RememberMeRepository cannot be null");

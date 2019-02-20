@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class NewsUserDetailsServiceImpl implements UserDetailsService {
 
-    private NewsUserService newsUserService;
+    private final NewsUserService newsUserService;
 
     public NewsUserDetailsServiceImpl(NewsUserService newsUserService) {
         Preconditions.checkNotNull(newsUserService, "NewsUserService cannot be null");
